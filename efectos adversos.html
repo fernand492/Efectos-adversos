@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Etiqueta para que el contenido se ajuste a dispositivos móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario Efectos adversos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #E6F0FA;
+      margin: 20px;
+      color: #003366;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #003366;
+    }
+    #counter {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 10px;
+      background-color: #CCE5FF;
+      border: 2px solid #003366;
+      border-radius: 5px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .question {
+      background-color: #FFFFFF;
+      border: 2px solid #003366;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    .question h3 {
+      margin-top: 0;
+      /* Se elimina el número de la pregunta en el título */
+      color: #003366;
+    }
+    .options {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 8px;
+      background-color: #F0F8FF;
+      padding: 5px;
+      border-radius: 3px;
+    }
+    .explanation {
+      font-size: 0.9em;
+      color: #333333;
+      margin-top: 10px;
+      border-top: 1px solid #003366;
+      padding-top: 10px;
+      display: none;
+    }
+    .result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .code {
+      font-family: "Courier New", Courier, monospace;
+      color: #005500;
+    }
+    button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-size: 1em;
+      background-color: #003366;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #002244;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cuestionario Interactivo de Codificación Clínica</h1>
+  <h2>Efectos adversos, Envenenamiento,Infradosificación y Efectos Tóxicos</h2>
+  
+  <!-- Contador global -->
+  <div id="counter">
+    Acertadas: <span id="correctCount">0</span> | Falladas: <span id="wrongCount">0</span>
+  </div>
+  
+  <!-- Contenedor de preguntas -->
+  <div id="questionsContainer">
+    <!-- Pregunta 1 -->
+    <div class="question" data-correct="C">
+      <h3>Pregunta:</h3>
+      <p>
+        Una reacción a penicilinas correctamente prescritas puede presentarse como efecto adverso (RAM). Según la clasificación, ¿cuál es el código y literal que corresponde a este efecto adverso de penicilinas?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> A) <span class="code">T36.0X1</span> – "Envenenamiento por penicilinas, accidental (no intencionado)"</label>
+        <label><input type="radio" name="q1" value="B"> B) <span class="code">T36.0X2</span> – "Envenenamiento por penicilinas, autolesión intencionada"</label>
+        <label><input type="radio" name="q1" value="C"> C) <span class="code">T36.0X5</span> – "Efecto adverso de penicilinas"</label>
+        <label><input type="radio" name="q1" value="D"> D) <span class="code">T36.0X6</span> – "Infradosificación de penicilinas"</label>
+      </div>
+      <button onclick="checkAnswer(1)">Enviar respuesta</button>
+      <div class="result" id="result1"></div>
+      <div class="explanation" id="explanation1">
+        <p><em>Explicación:</em> Los efectos adversos (RAM) se codifican utilizando el dígito “5”. Por ello, <strong>T36.0X5 – "Efecto adverso de penicilinas"</strong> es la respuesta correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 2 -->
+    <div class="question" data-correct="A">
+      <h3>Pregunta:</h3>
+      <p>
+        En la clasificación de envenenamientos por penicilinas, se distinguen diferentes intencionalidades. ¿Cuál código y literal corresponde al envenenamiento accidental (no intencionado) por penicilinas?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> A) <span class="code">T36.0X1</span> – "Envenenamiento por penicilinas, accidental (no intencionado)"</label>
+        <label><input type="radio" name="q2" value="B"> B) <span class="code">T36.0X2</span> – "Envenenamiento por penicilinas, autolesión intencionada"</label>
+        <label><input type="radio" name="q2" value="C"> C) <span class="code">T36.0X3</span> – "Envenenamiento por penicilinas, agresión"</label>
+        <label><input type="radio" name="q2" value="D"> D) <span class="code">T36.0X4</span> – "Envenenamiento por penicilinas, intencionalidad sin determinar"</label>
+      </div>
+      <button onclick="checkAnswer(2)">Enviar respuesta</button>
+      <div class="result" id="result2"></div>
+      <div class="explanation" id="explanation2">
+        <p><em>Explicación:</em> Se utiliza el dígito “1” para definir la intencionalidad accidental, por lo que la opción A es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="question" data-correct="B">
+      <h3>Pregunta:</h3>
+      <p>
+        Un paciente ha ingerido equivocadamente dos o más fármacos que provocan reacciones adversas. ¿Cuál es la forma de codificar esta situación según la normativa?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"> A) Utilizar un único código de la subcategoría <span class="code">T50.91</span>: "Envenenamiento, efecto adverso e infradosificación por múltiples fármacos, medicamentos y sustancias biológicas no especificadas".</label>
+        <label><input type="radio" name="q3" value="B"> B) Codificar cada sustancia de forma individualizada, salvo que exista un código de combinación en la Tabla de Fármacos.</label>
+        <label><input type="radio" name="q3" value="C"> C) Asignar el código correspondiente únicamente al fármaco con mayor dosis.</label>
+        <label><input type="radio" name="q3" value="D"> D) Registrar un único código para el fármaco que presente la reacción más grave.</label>
+      </div>
+      <button onclick="checkAnswer(3)">Enviar respuesta</button>
+      <div class="result" id="result3"></div>
+      <div class="explanation" id="explanation3">
+        <p><em>Explicación:</em> Cada sustancia debe codificarse de forma individualizada, salvo que exista un código de combinación. Por ello, la opción B es la correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 4 -->
+    <div class="question" data-correct="B">
+      <h3>Pregunta:</h3>
+      <p>
+        Sobre el concepto de envenenamiento, ¿cuál de las siguientes afirmaciones es verdadera en relación con la intencionalidad?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q4" value="A"> A) La intencionalidad en envenenamientos se codifica siempre como “accidental”.</label>
+        <label><input type="radio" name="q4" value="B"> B) Se utilizan los caracteres quinto o sexto para identificar si es accidental, autolesión, agresión o sin determinar.</label>
+        <label><input type="radio" name="q4" value="C"> C) La intencionalidad se determina según la vía de administración.</label>
+        <label><input type="radio" name="q4" value="D"> D) Envenenamiento y efecto adverso se usan indistintamente sin intencionalidad.</label>
+      </div>
+      <button onclick="checkAnswer(4)">Enviar respuesta</button>
+      <div class="result" id="result4"></div>
+      <div class="explanation" id="explanation4">
+        <p><em>Explicación:</em> La normativa utiliza el quinto o sexto carácter para reflejar la intencionalidad. Por ello, la opción B es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 5 -->
+    <div class="question" data-correct="A">
+      <h3>Pregunta:</h3>
+      <p>
+        Se presentan dos situaciones de hematuria por acenocumarol. En la primera, la intoxicación se debe al efecto acumulativo sin error; en la segunda, el paciente reconoce haber tomado más dosis. ¿Cuál de los siguientes conjuntos de códigos y literales corresponde a la situación de efecto acumulativo?
+      </p>
+      <div class="options">
+        <label>
+          <input type="radio" name="q5" value="A"> 
+          A) 
+          <span class="code">D68.32</span> – "Trastorno hemorrágico debido a anticoagulantes circulantes extrínsecos"<br>
+          &nbsp;&nbsp; <span class="code">R31.9</span> – "Hematuria no, especificada"<br>
+          &nbsp;&nbsp; <span class="code">T45.515A</span> – "Efecto adverso de anticoagulantes, contacto inicial"<br>
+          &nbsp;&nbsp; <span class="code">Z79.01</span> – "Uso prolongado (actual) de anticoagulantes"
+        </label>
+        <label>
+          <input type="radio" name="q5" value="B"> 
+          B) 
+          <span class="code">T45.511A</span> – "Envenenamiento por anticoagulantes, accidental (no intencionado), contacto inicial"<br>
+          &nbsp;&nbsp; <span class="code">R31.9</span> – "Hematuria no, especificada"<br>
+          &nbsp;&nbsp; <span class="code">Z79.01</span> – "Uso prolongado (actual) de anticoagulantes"
+        </label>
+        <label>
+          <input type="radio" name="q5" value="C"> 
+          C) 
+          <span class="code">T45.515A</span> – "Efecto adverso de anticoagulantes, contacto inicial"<br>
+          &nbsp;&nbsp; <span class="code">Z79.01</span> – "Uso prolongado (actual) de anticoagulantes"<br>
+          &nbsp;&nbsp; (Sin códigos adicionales)
+        </label>
+        <label>
+          <input type="radio" name="q5" value="D"> 
+          D) 
+          <span class="code">T45.511A</span> – "Envenenamiento por anticoagulantes, accidental (no intencionado), contacto inicial"<br>
+          &nbsp;&nbsp; <span class="code">T45.515A</span> – "Efecto adverso de anticoagulantes, contacto inicial"
+        </label>
+      </div>
+      <button onclick="checkAnswer(5)">Enviar respuesta</button>
+      <div class="result" id="result5"></div>
+      <div class="explanation" id="explanation5">
+        <p><em>Explicación:</em> Para el efecto acumulativo se utiliza <strong>T45.515A</strong> junto a los códigos complementarios <span class="code">D68.32</span>, <span class="code">R31.9</span> y <span class="code">Z79.01</span>. La opción A es la correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 6 -->
+    <div class="question" data-correct="A">
+      <h3>Pregunta:</h3>
+      <p>
+        Un paciente es admitido en urgencias en coma tras una intoxicación aguda por sedantes. La codificación propuesta es:
+      </p>
+      <div class="options">
+        <label>
+          <input type="radio" name="q6" value="A"> 
+          A) <span class="code">T42.6X1A</span> – "Envenenamiento por otros fármacos antiepilépticos e hipnóticos-sedantes, accidental (no intencionado), contacto inicial"<br>
+          &nbsp;&nbsp;<span class="code">R40.20</span> – "Coma no especificado"<br>
+          &nbsp;&nbsp;<span class="code">Y92.009</span> – "Lugar no especificado de residencia no institucional (privada), no especificada"
+        </label>
+        <label><input type="radio" name="q6" value="B"> B) <span class="code">T42.6X1A</span>, <span class="code">Y92.009</span>, <span class="code">R40.20</span></label>
+        <label><input type="radio" name="q6" value="C"> C) <span class="code">R40.20</span>, <span class="code">T42.6X1A</span>, <span class="code">Y92.009</span></label>
+        <label><input type="radio" name="q6" value="D"> D) <span class="code">Y92.009</span>, <span class="code">T42.6X1A</span>, <span class="code">R40.20</span></label>
+      </div>
+      <button onclick="checkAnswer(6)">Enviar respuesta</button>
+      <div class="result" id="result6"></div>
+      <div class="explanation" id="explanation6">
+        <p><em>Explicación:</em> Se asigna primero el código que identifica la causa (<strong>T42.6X1A</strong>), luego la manifestación (<strong>R40.20</strong>) y finalmente el código complementario del lugar (<strong>Y92.009</strong>). La opción A es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 7 -->
+    <div class="question" data-correct="C">
+      <h3>Pregunta:</h3>
+      <p>
+        En cuanto a la infradosificación, se emplea el dígito “6” para identificar este escenario. ¿Cuál es el código y literal adecuado para la infradosificación de penicilinas en contacto inicial?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q7" value="A"> A) <span class="code">T36.0X1A</span> – "Envenenamiento por penicilinas, accidental (no intencionado), contacto inicial"</label>
+        <label><input type="radio" name="q7" value="B"> B) <span class="code">T36.0X5A</span> – "Efecto adverso de penicilinas, contacto inicial"</label>
+        <label><input type="radio" name="q7" value="C"> C) <span class="code">T36.0X6A</span> – "Infradosificación de penicilinas, contacto inicial"</label>
+        <label><input type="radio" name="q7" value="D"> D) <span class="code">T36.0X6S</span> – "Infradosificación de penicilinas, secuela"</label>
+      </div>
+      <button onclick="checkAnswer(7)">Enviar respuesta</button>
+      <div class="result" id="result7"></div>
+      <div class="explanation" id="explanation7">
+        <p><em>Explicación:</em> La infradosificación se identifica mediante el dígito “6” y, para contacto inicial, se utiliza “A”. La opción C es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 8 -->
+    <div class="question" data-correct="A">
+      <h3>Pregunta:</h3>
+      <p>
+        Respecto a los efectos tóxicos de sustancias no medicamentosas, se indica el siguiente ejemplo:
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q8" value="A"> A) <span class="code">T57.2X1A</span> – "Efecto tóxico de manganeso y sus compuestos, accidental (no intencionado), contacto inicial"</label>
+        <label><input type="radio" name="q8" value="B"> B) <span class="code">T57.2X3A</span> – (Literal no especificado para este caso)</label>
+        <label><input type="radio" name="q8" value="C"> C) <span class="code">T57.2X1S</span> – (Literal indica secuela)</label>
+        <label><input type="radio" name="q8" value="D"> D) <span class="code">T57.2X3S</span> – (Literal incorrecto para contacto inicial)</label>
+      </div>
+      <button onclick="checkAnswer(8)">Enviar respuesta</button>
+      <div class="result" id="result8"></div>
+      <div class="explanation" id="explanation8">
+        <p><em>Explicación:</em> Se utiliza <strong>T57.2X1A</strong> para describir el efecto tóxico de manganeso en un contexto accidental y de contacto inicial. La opción A es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 9 -->
+    <div class="question" data-correct="C">
+      <h3>Pregunta:</h3>
+      <p>
+        En la codificación de secuelas derivadas de efectos adversos o envenenamientos, ¿cuál es el orden correcto? 
+        <br>Ejemplo: Daño cerebral secundario a una reacción alérgica por penicilinas.
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q9" value="A"> A) Primero se codifica el agente causal con "S" y luego la manifestación.</label>
+        <label><input type="radio" name="q9" value="B"> B) Se asigna un único código que combine ambos aspectos.</label>
+        <label><input type="radio" name="q9" value="C"> C) Primero se codifica la manifestación (secuela) y luego el fármaco responsable con “S”.</label>
+        <label><input type="radio" name="q9" value="D"> D) El orden depende de la gravedad del daño.</label>
+      </div>
+      <button onclick="checkAnswer(9)">Enviar respuesta</button>
+      <div class="result" id="result9"></div>
+      <div class="explanation" id="explanation9">
+        <p><em>Explicación:</em> Primero se asigna el código de la manifestación y luego el del fármaco responsable con “S”. La opción C es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 10 -->
+    <div class="question" data-correct="A">
+      <h3>Pregunta:</h3>
+      <p>
+        Los efectos crónicos a largo plazo se diferencian según si el paciente continúa o ha interrumpido el tratamiento. Utilizando el ejemplo de la diabetes inducida por glucocorticoides, ¿cuál es la codificación para un paciente en tratamiento crónico?
+      </p>
+      <div class="options">
+        <label>
+          <input type="radio" name="q10" value="A"> 
+          A) <span class="code">E09.9</span> – "Diabetes mellitus inducida por fármaco o sustancia química sin complicaciones", 
+          <span class="code">T38.0X5A</span> – "Efecto adverso de glucocorticoides y análogos sintéticos, contacto inicial" y 
+          <span class="code">Z79.52</span> – "Uso prolongado (actual) de esteroides sistémicos"
+        </label>
+        <label>
+          <input type="radio" name="q10" value="B"> 
+          B) <span class="code">E09.9</span>, <span class="code">T38.0X5S</span> y <span class="code">Z79.52</span>
+        </label>
+        <label>
+          <input type="radio" name="q10" value="C"> 
+          C) <span class="code">E09.9</span> y <span class="code">T38.0X5A</span> (sin código complementario)
+        </label>
+        <label>
+          <input type="radio" name="q10" value="D"> 
+          D) <span class="code">E09.9</span> y <span class="code">T38.0X5S</span>
+        </label>
+      </div>
+      <button onclick="checkAnswer(10)">Enviar respuesta</button>
+      <div class="result" id="result10"></div>
+      <div class="explanation" id="explanation10">
+        <p><em>Explicación:</em> En pacientes en tratamiento crónico se utiliza “A” (<strong>T38.0X5A</strong>) junto a <strong>E09.9</strong> y <strong>Z79.52</strong>. La opción A es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 11 -->
+    <div class="question" data-correct="C">
+      <h3>Pregunta:</h3>
+      <p>
+        ¿Cuál es la codificación que se debe utilizar cuando no se especifica la intencionalidad en un envenenamiento por fármacos?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q11" value="A"> A) Se codifica como autolesión intencionada.</label>
+        <label><input type="radio" name="q11" value="B"> B) Se asume la intencionalidad sin determinar.</label>
+        <label><input type="radio" name="q11" value="C"> C) Se codifica como accidental.</label>
+        <label><input type="radio" name="q11" value="D"> D) Se utiliza el código genérico para efecto adverso sin intencionalidad.</label>
+      </div>
+      <button onclick="checkAnswer(11)">Enviar respuesta</button>
+      <div class="result" id="result11"></div>
+      <div class="explanation" id="explanation11">
+        <p><em>Explicación:</em> Sin información se codifica el envenenamiento como <strong>accidental</strong>. La opción C es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 12 -->
+    <div class="question" data-correct="C">
+      <h3>Pregunta:</h3>
+      <p>
+        Respecto a la infradosificación, ¿por qué su código no se debe asignar como diagnóstico principal?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q12" value="A"> A) Porque siempre produce cambios clínicos secundarios.</label>
+        <label><input type="radio" name="q12" value="B"> B) Porque se considera un error terapéutico, no una enfermedad.</label>
+        <label><input type="radio" name="q12" value="C"> C) Porque se reconoce únicamente como complemento descriptivo de la reducción de dosis.</label>
+        <label><input type="radio" name="q12" value="D"> D) Porque se usa únicamente en combinación con códigos de envenenamiento.</label>
+      </div>
+      <button onclick="checkAnswer(12)">Enviar respuesta</button>
+      <div class="result" id="result12"></div>
+      <div class="explanation" id="explanation12">
+        <p><em>Explicación:</em> Los códigos de infradosificación se usan como complemento, no como diagnóstico principal. La opción C es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 13 -->
+    <div class="question" data-correct="C">
+      <h3>Pregunta:</h3>
+      <p>
+        La clasificación de efectos tóxicos (T51-T65) se utiliza para sustancias de procedencia no medicamentosa. ¿Cuál afirmación es correcta?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q13" value="A"> A) Se requiere siempre codificación adicional de causa externa.</label>
+        <label><input type="radio" name="q13" value="B"> B) Los códigos deben ir antes de los de manifestaciones clínicas.</label>
+        <label><input type="radio" name="q13" value="C"> C) Permiten identificar la intencionalidad y se complementan con el código de la manifestación asociada.</label>
+        <label><input type="radio" name="q13" value="D"> D) Se asumen por defecto como efectos crónicos.</label>
+      </div>
+      <button onclick="checkAnswer(13)">Enviar respuesta</button>
+      <div class="result" id="result13"></div>
+      <div class="explanation" id="explanation13">
+        <p><em>Explicación:</em> Los códigos de efectos tóxicos identifican la intencionalidad y se complementan con el código de la manifestación. La opción C es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 14 -->
+    <div class="question" data-correct="C">
+      <h3>Pregunta:</h3>
+      <p>
+        En casos de secuelas derivadas de envenenamientos o efectos adversos, ¿cómo se debe proceder en la secuenciación de los códigos?
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q14" value="A"> A) Primero se codifica el agente causal con "S" y luego la manifestación.</label>
+        <label><input type="radio" name="q14" value="B"> B) Se emplea un único código que contenga toda la información.</label>
+        <label><input type="radio" name="q14" value="C"> C) Primero se codifica la manifestación (secuela) y luego se añade el código del fármaco responsable con “S”.</label>
+        <label><input type="radio" name="q14" value="D"> D) Se usan códigos distintos para efectos agudos y crónicos sin relación secuencial.</label>
+      </div>
+      <button onclick="checkAnswer(14)">Enviar respuesta</button>
+      <div class="result" id="result14"></div>
+      <div class="explanation" id="explanation14">
+        <p><em>Explicación:</em> Se debe codificar primero la manifestación y luego el código del fármaco con “S”. La opción C es correcta.</p>
+      </div>
+    </div>
+
+    <!-- Pregunta 15 -->
+    <div class="question" data-correct="A">
+      <h3>Pregunta:</h3>
+      <p>
+        En la codificación de efectos crónicos a largo plazo debidos a un medicamento recetado, utilizando el ejemplo de diabetes inducida por esteroides, ¿cuál es la diferencia principal entre un paciente en tratamiento y otro que lo ha suspendido?
+      </p>
+      <div class="options">
+        <label>
+          <input type="radio" name="q15" value="A"> 
+          A) <span class="code">E09.9</span> – "Diabetes mellitus inducida por fármaco o sustancia química sin complicaciones", 
+          <span class="code">T38.0X5A</span> – "Efecto adverso de glucocorticoides y análogos sintéticos, contacto inicial" y 
+          <span class="code">Z79.52</span> – "Uso prolongado (actual) de esteroides sistémicos"
+        </label>
+        <label>
+          <input type="radio" name="q15" value="B"> 
+          B) <span class="code">E09.9</span>, <span class="code">T38.0X5S</span> y <span class="code">Z79.52</span>
+        </label>
+        <label>
+          <input type="radio" name="q15" value="C"> 
+          C) <span class="code">E09.9</span> y <span class="code">T38.0X5A</span> (sin código complementario)
+        </label>
+        <label>
+          <input type="radio" name="q15" value="D"> 
+          D) <span class="code">E09.9</span> y <span class="code">T38.0X5S</span>
+        </label>
+      </div>
+      <button onclick="checkAnswer(15)">Enviar respuesta</button>
+      <div class="result" id="result15"></div>
+      <div class="explanation" id="explanation15">
+        <p><em>Explicación:</em> Para un paciente en tratamiento se utiliza “A” (<strong>T38.0X5A</strong>) junto a <strong>E09.9</strong> y <strong>Z79.52</strong>. La opción A es la correcta.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Función para mezclar un array (algoritmo Fisher–Yates)
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // Randomizamos el orden de las preguntas
+    function randomizeQuestions() {
+      const container = document.getElementById("questionsContainer");
+      const questions = Array.from(container.getElementsByClassName("question"));
+      const shuffled = shuffleArray(questions);
+      container.innerHTML = "";
+      shuffled.forEach(q => container.appendChild(q));
+    }
+
+    // Randomizamos el orden de las opciones en cada pregunta
+    function randomizeOptions() {
+      const questions = document.querySelectorAll(".question");
+      questions.forEach(question => {
+        const optionsDiv = question.querySelector(".options");
+        if (optionsDiv) {
+          const optionLabels = Array.from(optionsDiv.children);
+          const shuffled = shuffleArray(optionLabels);
+          optionsDiv.innerHTML = "";
+          shuffled.forEach(label => optionsDiv.appendChild(label));
+        }
+      });
+    }
+
+    // Contadores globales
+    let correctCount = 0;
+    let wrongCount = 0;
+
+    function updateCounter() {
+      document.getElementById("correctCount").textContent = correctCount;
+      document.getElementById("wrongCount").textContent = wrongCount;
+    }
+
+    // Función que valida la respuesta de cada pregunta
+    function checkAnswer(qNumber) {
+      // Se utiliza el orden actual de las preguntas en el DOM
+      const questions = document.querySelectorAll(".question");
+      // Se asume que el orden aleatorio no reordena el nombre del radio (q1, q2, etc.); se usan índices basados en el DOM
+      const questionDiv = questions[qNumber - 1];
+      const correct = questionDiv.getAttribute("data-correct");
+      const radios = questionDiv.querySelectorAll("input[type='radio']");
+      const resultDiv = document.getElementById("result" + qNumber);
+      const explanationDiv = document.getElementById("explanation" + qNumber);
+      let answered = false;
+      let selectedValue = "";
+      radios.forEach(radio => {
+        if (radio.checked) {
+          answered = true;
+          selectedValue = radio.value;
+        }
+      });
+      if (!answered) {
+        alert("Por favor, selecciona una respuesta en la pregunta.");
+        return;
+      }
+      if (selectedValue === correct) {
+        resultDiv.textContent = "¡Correcto!";
+        resultDiv.style.color = "green";
+        correctCount++;
+      } else {
+        resultDiv.textContent = "Incorrecto.";
+        resultDiv.style.color = "red";
+        wrongCount++;
+      }
+      explanationDiv.style.display = "block";
+      updateCounter();
+    }
+
+    // Al cargar la página, randomizamos el orden de preguntas y opciones
+    window.onload = function() {
+      randomizeQuestions();
+      randomizeOptions();
+      updateCounter();
+    }
+  </script>
+</body>
+</html>
